@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Spotify Hackathon</title>
+
+    <meta name="description" content="Spotify Hackathon">
+    <meta name="author" content="Branden Jordan">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+				<a class="navbar-brand top-logo" href="/">Branden's Spotify Hackathon Project</a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							 <a class="nav-link" href="#">Link <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							 <a class="nav-link" href="#">Link</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="jumbotron">
+				<h2>
+					Spotify API Hackathon
+				</h2>
+				<p>
+					This is a hackathon project that aims to try and utilize some of Spotify's Personalization API
+				</p>
+				<p>
+					After logging in you should see the 50 most recent songs you liked on Spotify!
+				</p>
+				<p>
+					{% if not uuid%}
+					<a class="btn btn-primary btn-large" href="{{auth_url}}">Click to Login with Spotify</a>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex flex-wrap justify-content-between">
+		{% for song in songs %}
+			<div class="flex-row mt-auto w-25">
+				<div class="w-50">
+					<div class="p-2">
+						<h2>
+							{{ song.name }}
+						</h2>
+					</div>
+					<div class="p-2">
+						<p>
+							Artists: {{song.artists}}
+						</p>
+					</div>
+					<div class="p-2">
+						<p>
+							Added: {{ song.added_time}}
+						</p>
+					</div>
+					<img src="{{song.album_art}}"/>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
